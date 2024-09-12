@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 const services = [
   {
@@ -157,10 +158,11 @@ export default function ServiceDetailPage({ params }: { params: { id: string } }
 
   return (
     <div className="relative overflow-hidden">
-      <img
+      <Image
         src={service.image}
         alt={service.title}
-        className="absolute inset-0 object-cover w-full h-full z-[-1] opacity-60"
+        layout='fill'
+        className="absolute inset-0 object-cover z-[-1] opacity-60"
       />
       <div className="absolute inset-0 bg-black bg-opacity-30 backdrop-blur-md z-[-1]"></div>
       <div className="container mx-auto p-6 max-w-4xl relative z-10">

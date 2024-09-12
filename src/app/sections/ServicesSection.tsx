@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
@@ -6,43 +7,43 @@ const services = [
     id: 1,
     title: 'Head Massage',
     description: 'Baş ağrılarınızı hafifletmek ve rahatlamanızı sağlamak için...',
-    image: 'images/services/service1.png',
+    image: '/images/services/service1.png',
   },
   {
     id: 2,
     title: 'Bali Massage',
     description: "Bali masajı, Endonezya'nın egzotik adası Bali'den gelen geleneksel bir rahatlama yöntemidir. Bu masaj türü...",
-    image: 'images/services/service2.png',
+    image: '/images/services/service2.png',
   },
   {
     id: 3,
     title: 'Thai Massage',
     description: "Thai masajı, kökeni yüzyıllar öncesine dayanan, geleneksel bir Asya rahatlama tekniğidir. Tayland'ın zengin kültürel...",
-    image: 'images/services/service3.png',
+    image: '/images/services/service3.png',
   },
   {
     id: 4,
     title: 'Deep Massage',
     description: "Deep masaj, derin dokulara yönelik uygulanan bir masaj türüdür ve kas gerginliklerini ve ağrılarını hafifletmek için...",
-    image: 'images/services/service4.png',
+    image: '/images/services/service4.png',
   },
   {
     id: 5,
     title: 'Hot Oil Massage',
     description: "Hot oil massage, sıcak yağ kullanılarak yapılan bir masaj türüdür ve vücudu rahatlatmak, kas...",
-    image: 'images/services/service5.png',
+    image: '/images/services/service5.png',
   },
   {
     id: 6,
     title: 'Medical Massage',
     description: "Medical massage, sağlık ve iyileşme amaçlı uygulanan profesyonel bir masaj terapisidir. Bu masaj türü, fiziksel rahatsızlıkları azaltma...",
-    image: 'images/services/service6.png',
+    image: '/images/services/service6.png',
   },
   {
     id: 7,
     title: 'Sultan Massage',
     description: "Sultan masajı, zarif bir rahatlama ve lüks deneyimi sunan özel bir masaj türüdür. Bu masaj, vücudu ve...",
-    image: 'images/services/service7.png',
+    image: '/images/services/service7.png',
   },
 ];
 
@@ -71,10 +72,12 @@ const ServicesSection = () => {
               className={`bg-gradient-to-r from-brown-300 via-brown-400 to-brown-500 rounded-lg shadow-lg p-6 flex flex-col items-center transition-transform transform hover:scale-105 ${index === services.length - 1 ? 'lg:col-span-3' : ''
                 }`}
             >
-              <img
+              <Image
                 src={service.image}
                 alt={service.title}
-                className="w-40 h-40 rounded-full mb-4 shadow-md object-cover"
+                width={160}
+                height={160}
+                className="rounded-full mb-4 shadow-md object-cover"
               />
               <h3 className="text-2xl font-bold text-brown-100 mb-2">{service.title}</h3>
               <p className="text-center text-brown-200 mb-4 font-semibold">
