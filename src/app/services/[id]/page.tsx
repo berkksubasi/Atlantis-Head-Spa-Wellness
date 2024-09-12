@@ -1,6 +1,4 @@
 import { notFound } from 'next/navigation';
-
-// Statik veri
 const services = [
   {
     id: '1',
@@ -150,13 +148,6 @@ const services = [
   }
 ];
 
-interface Service {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-}
-
 export default function ServiceDetailPage({ params }: { params: { id: string } }) {
   const service = services.find((service) => service.id === params.id);
 
@@ -184,7 +175,6 @@ export default function ServiceDetailPage({ params }: { params: { id: string } }
   );
 }
 
-// params: { id: string } - Dinamik rotanın URL parametresi
 export async function generateStaticParams() {
   return services.map(service => ({
     id: service.id,

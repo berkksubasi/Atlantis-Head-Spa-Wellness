@@ -1,6 +1,3 @@
-// pages/contact.tsx
-
-import Head from 'next/head';
 import { FC } from 'react';
 
 const ContactPage: FC = () => {

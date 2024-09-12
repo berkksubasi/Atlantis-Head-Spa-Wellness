@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import ServicesSection from './sections/ServicesSection';
 import HeroSection from './sections/HeroSection';
 import AboutUsSection from './sections/AboutUsSection';
