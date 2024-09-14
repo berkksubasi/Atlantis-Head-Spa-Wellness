@@ -1,20 +1,44 @@
 'use client';
 import { useState } from 'react';
+import SuccessModal from '../components/modal/SuccessModal';
+import ErrorModal from '../components/modal/ErrorModal';
 
 const AppointmentForm = () => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, phone, date, time });
-    // Randevu bilgilerini backend'e göndermek için gerekli işlemler
+    
+    try {
+      const response = await fetch('/api/appointment', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, phone, date, time }),
+      });
+
+      if (response.ok) {
+        setIsSuccessModalOpen(true);
+        setName('');
+        setPhone('');
+        setDate('');
+        setTime('');
+      } else {
+        throw new Error('Randevu gönderimi başarısız oldu');
+      }
+    } catch (error) {
+      setIsErrorModalOpen(true);
+    }
   };
 
   return (
-    <div className="w-full h-screen bg-cover bg-center flex flex-col items-center justify-center text-white px-4 md:px-8"
+    <div className="py-16 px-4 md:px-8 w-full bg-cover bg-center flex flex-col items-center justify-center text-white"
       style={{ backgroundImage: 'url("/images/backgrounds/spa-background.png")' }}>
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-2xl text-green-900 font-bold mb-6 text-center">Randevu Al</h2>
@@ -34,7 +58,7 @@ const AppointmentForm = () => {
         <div className="mb-4">
           <label className="block text-gray-700">Telefon Numaranız</label>
           <input
-            type="email"
+            type="text"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded mt-2"
@@ -49,8 +73,7 @@ const AppointmentForm = () => {
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-2"
-            placeholder='Randevu Tarihi Seçin'
+            className="w-full p-2 border border-gray-300 rounded mt-2 text-gray-700"
             required
           />
         </div>
@@ -61,8 +84,7 @@ const AppointmentForm = () => {
             type="time"
             value={time}
             onChange={(e) => setTime(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded mt-2"
-            placeholder='Randevu Saati Seçin'
+            className="w-full p-2 border border-gray-300 rounded mt-2 text-gray-700"
             required
           />
         </div>
@@ -71,6 +93,15 @@ const AppointmentForm = () => {
           Randevu Oluştur
         </button>
       </form>
+
+      <SuccessModal
+        isOpen={isSuccessModalOpen}
+        onClose={() => setIsSuccessModalOpen(false)}
+      />
+      <ErrorModal
+        isOpen={isErrorModalOpen}
+        onClose={() => setIsErrorModalOpen(false)}
+      />
     </div>
   );
 };
