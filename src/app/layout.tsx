@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import "./Preloader.css";
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
 
@@ -33,7 +32,7 @@ export default function RootLayout({
       >
         <Navbar />
         <main>
-          {children} {/* Sayfa içeriği */}
+          {children} 
         </main>
         <footer>
         <Footer />
