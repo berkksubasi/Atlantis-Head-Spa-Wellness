@@ -1,5 +1,4 @@
-// app/sections/AboutUsSection.tsx
-
+'use client'
 import { FC } from 'react';
 
 const AboutUsSection: FC = () => {

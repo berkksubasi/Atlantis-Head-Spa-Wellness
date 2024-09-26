@@ -1,3 +1,5 @@
+
+'use client'
 import AppointmentForm from '@/app/appointment/page';
 
 const Modal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {

@@ -1,3 +1,4 @@
+'use client'
 const ErrorModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   if (!isOpen) return null;
 
