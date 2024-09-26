@@ -1,9 +1,11 @@
-import type { Metadata } from "next";
+'use client';
+import { DefaultSeo } from "next-seo";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
 
+// Font tanımları
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -15,9 +17,24 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Atlantis Head Spa Wellness | Pendik | İStanbul",
-  description: "Pendik Atlantis AVM'de bulunan Atlantis Head Spa Wellness saglık ve hizmetlerini sunmaktadır. Randevu almak için lütfen randevu formumuzu doldurun ya da GSM numaramız aracılığı ile bize ulaşabilirsiniz.",
+const defaultSEO = {
+  title: "Atlantis Head Spa Wellness | Kurtköy Masaj Salonu | Pendik | İstanbul",
+  description:
+    "Pendik Kurtköy Atlantis AVM'de bulunan Atlantis Head Spa Wellness sağlık ve hizmetlerini sunmaktadır. Randevu almak için lütfen randevu formumuzu doldurun ya da GSM numaramız aracılığı ile bize ulaşabilirsiniz.",
+  openGraph: {
+    type: "website",
+    locale: "tr_TR",
+    url: "https://www.atlantisspa.com",
+    site_name: "Atlantis Head Spa Wellness",
+    images: [
+      {
+        url: "/images/backgrounds/spa-background.png",
+        width: 800,
+        height: 600,
+        alt: "Atlantis Head Spa Wellness Kurtköy",
+      },
+    ],
+  }
 };
 
 export default function RootLayout({
@@ -30,12 +47,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <DefaultSeo {...defaultSEO} />
         <Navbar />
-        <main>
-          {children} 
-        </main>
+        <main>{children}</main>
         <footer>
-        <Footer />
+          <Footer />
         </footer>
       </body>
     </html>
